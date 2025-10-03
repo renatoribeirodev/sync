@@ -1,117 +1,93 @@
-# SyncUp - Gerenciador de Projetos 🚀
+# SyncUp - Gerenciador de Projetos (Arquitetura de Micro-Frontends) 🚀
 
-**SyncUp** é uma moderna aplicação web de gerenciamento de projetos, desenvolvida como um case de estudo completo sobre arquiteturas de software avançadas para o front-end. A aplicação é responsiva, instalável (PWA) e demonstra conceitos como gerenciamento de estado global, Micro-Frontends e fluxos de autenticação modernos.
+**SyncUp** é uma moderna aplicação web de gerenciamento de projetos, desenvolvida como um case de estudo completo sobre arquiteturas de software avançadas para o front-end. Este repositório está estruturado como um **Monorepo**, contendo a aplicação principal (Shell) e um Micro-Frontend independente (Página de Análise).
 
-![Screenshot do Dashboard do SyncUp](https://i.imgur.com/3YpD55D.png)
+![Screenshot da POC de Micro-Frontend](https://i.imgur.com/wOQZ8hU.png)
 
-## ✨ Funcionalidades Principais
+## ✨ Arquitetura e Funcionalidades
 
-* **Dashboard Interativo:** Visualização rápida de métricas chave como projetos ativos, em andamento, concluídos e membros da equipe.
-* **Gerenciamento de Projetos (CRUD):** Funcionalidade completa para Criar, Ler, Atualizar e Excluir projetos.
-* **Gerenciamento de Equipe (CRUD):** Funcionalidade completa para Adicionar, Editar e Excluir membros da equipe.
-* **Persistência de Dados:** Todos os dados de projetos e equipes são salvos no **Local Storage** do navegador, simulando um backend e garantindo que os dados persistam entre as sessões.
-* **Progressive Web App (PWA):** A aplicação é 100% compatível com PWA, permitindo que seja "instalada" no desktop ou em dispositivos móveis para uma experiência de aplicativo nativo.
-* **Prova de Conceito de Micro-Frontends:** Inclui uma página de "Análise" que é, na verdade, uma aplicação separada e independente, carregada dinamicamente em tempo de execução.
+Este projeto demonstra o domínio sobre os seguintes conceitos de engenharia de software:
 
-## 🏗️ Conceitos de Arquitetura Implementados
-
-Este projeto foi construído para demonstrar o domínio sobre os seguintes conceitos de engenharia de software:
-
-1.  **Arquitetura de Application Shell:** O projeto utiliza um componente "Shell" (`AppShell.jsx`) que serve como o container principal da aplicação, responsável pela navegação, layout e estado global. Cada página (`Dashboard`, `Projetos`, `Equipe`) funciona como um micro-aplicativo isolado e desacoplado, carregado dinamicamente pelo Shell.
-
-2.  **Gerenciamento de Estado Global com Zustand:** O estado da aplicação (autenticação, dados de projetos, dados da equipe) é gerenciado de forma centralizada e eficiente com a biblioteca Zustand. Isso permite uma comunicação desacoplada entre os componentes, seguindo uma abordagem minimalista e baseada em hooks.
-
-3.  **Simulação de Autenticação OAuth 2.0:** O fluxo de login simula o retorno de um provedor de identidade corporativo (como Google ou Microsoft). O clique no botão representa o callback de sucesso do fluxo OAuth, que autoriza o acesso à aplicação.
-
-4.  **Micro-Frontends com Module Federation (Prova de Conceito):** A página "Análise" demonstra uma arquitetura de Micro-Frontend "real". Ela é um projeto Vite/React completamente separado, rodando em seu próprio servidor, que é carregado dinamicamente pelo aplicativo principal (Shell) em tempo de execução, utilizando o `vite-plugin-federation`.
+1.  **Arquitetura de Application Shell:** O projeto `syncup-project-manager` funciona como o "Shell", responsável pelo layout, navegação e estado global.
+2.  **Gerenciamento de Estado Global com Zustand:** O estado da aplicação (autenticação, dados) é gerenciado de forma centralizada e eficiente com Zustand.
+3.  **Simulação de Autenticação OAuth 2.0:** O fluxo de login simula o retorno bem-sucedido de um provedor de identidade corporativo.
+4.  **Progressive Web App (PWA):** A aplicação principal é 100% instalável no desktop ou em dispositivos móveis.
+5.  **CRUD com Persistência Local:** Todas as funcionalidades de Criar, Ler, Atualizar e Excluir para Projetos e Equipes são salvas no Local Storage.
+6.  **Micro-Frontends com Module Federation:** A aplicação `analytics-micro-app` é um projeto Vite/React completamente separado que é carregado dinamicamente pelo Shell em tempo de execução, demonstrando uma arquitetura de Micro-Frontend "real".
 
 ## 🛠️ Tecnologias Utilizadas
 
 * **Framework:** React 18
 * **Build Tool:** Vite
 * **Gerenciamento de Estado:** Zustand & Immer
-* **Ícones:** Lucide React
 * **Micro-Frontend:** Module Federation (`@originjs/vite-plugin-federation`)
-* **Estilização:** CSS puro com Variáveis CSS para theming.
+* **Estilização:** CSS puro com Variáveis CSS.
 
 ---
 
-## 🚀 Guia de Instalação e Execução
+## 🚀 Guia de Instalação e Execução Completa
 
-Para rodar este projeto localmente, siga os passos abaixo.
+Para rodar este projeto e ver a integração dos Micro-Frontends, você precisa iniciar os dois servidores simultaneamente.
 
 ### Pré-requisitos
 
 * Node.js (versão 18 ou superior)
-* npm (geralmente instalado com o Node.js)
+* npm
 
-### 1. Rodando a Aplicação Principal (SyncUp)
+### Estrutura de Pastas
 
-Esta é a aplicação principal com todas as funcionalidades de CRUD.
+Este repositório é um Monorepo. A estrutura de pacotes é a seguinte:
+```
+/packages/
+├── /syncup-project-manager/   (O App Shell Principal)
+└── /analytics-micro-app/      (O Micro-Frontend Remoto)
+```
 
-1.  **Clone o repositório:**
+### Passo 1: Iniciar o Micro-Frontend Remoto (`analytics-micro-app`)
+
+Este servidor precisa ser iniciado primeiro, pois ele "oferece" o componente para o app principal.
+
+1.  Abra um **Terminal 1**.
+2.  Navegue até a pasta do micro-frontend:
     ```bash
-    git clone <URL_DO_SEU_REPOSITÓRIO>
-    cd syncup-project-manager
+    cd packages/analytics-micro-app
     ```
-
-2.  **Instale as dependências:**
+3.  Instale as dependências:
     ```bash
     npm install
     ```
-
-3.  **Inicie o servidor de desenvolvimento:**
-    ```bash
-    npm run dev
-    ```
-    A aplicação estará disponível em `http://localhost:5173` (ou outra porta, como `5175`, se a 5173 estiver em uso).
-
-### 2. Rodando a Prova de Conceito de Micro-Frontend
-
-Para ver a página "Análise" funcionando, você precisa rodar um **segundo projeto** simultaneamente.
-
-1.  **Clone ou crie o projeto `analytics-micro-app`:**
-    * Este projeto deve estar em uma pasta separada, fora do `syncup-project-manager`.
-
-2.  **Navegue até a pasta e instale as dependências:**
-    ```bash
-    cd analytics-micro-app
-    npm install
-    ```
-
-3.  **Construa (Build) o micro-frontend:**
-    * Este passo gera a pasta `dist` com os arquivos otimizados.
+4.  **Construa (Build)** o projeto:
     ```bash
     npm run build
     ```
-
-4.  **Inicie o servidor de preview em uma porta diferente:**
+5.  **Inicie o servidor de preview** em uma porta específica (ex: 5174):
     ```bash
     npm run preview -- --port 5174
     ```
+6.  Deixe este terminal rodando.
 
-**Para testar a integração:**
-* Garanta que os **dois terminais** estejam rodando (o `dev` do SyncUp e o `preview` do Analytics).
-* Abra o SyncUp (`http://localhost:5173` ou `5175`).
-* Faça o login e clique no item "Análise" na barra lateral. A página carregada virá diretamente do servidor rodando na porta `5174`.
+### Passo 2: Iniciar a Aplicação Principal (`syncup-project-manager`)
 
-## 📂 Estrutura do Projeto
+Este é o nosso aplicativo principal que o usuário irá interagir.
 
-```
-/
-├── public/                # Arquivos estáticos (ícones, manifesto PWA)
-├── src/
-│   ├── components/        # Componentes reutilizáveis
-│   │   ├── forms/         # Formulários de Projeto e Equipe
-│   │   ├── micro-apps/    # Nossos "micro-frontends" simulados (Dashboard, Projetos, Equipe)
-│   │   ├── shell/         # A arquitetura do "Application Shell" (Header, Sidebar)
-│   │   └── ui/            # Componentes de UI puros (Card, Modal)
-│   ├── pages/             # Componentes de página completos (Login)
-│   ├── store/             # Nossas stores do Zustand (auth, data)
-│   ├── utils/             # Funções utilitárias e dados mock
-│   ├── App.jsx            # Componente raiz que decide entre Login/Shell
-│   ├── index.jsx          # Ponto de entrada da aplicação React
-│   └── service-worker.js  # Lógica do PWA
-├── vite.config.js         # Configuração do Vite e Module Federation
-└── README.md              # Este arquivo
-```
+1.  Abra um **Terminal 2** (um novo terminal, separado do primeiro).
+2.  Navegue até a pasta da aplicação principal:
+    ```bash
+    cd packages/syncup-project-manager
+    ```
+3.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+4.  Inicie o servidor de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+    A aplicação estará disponível em `http://localhost:5173` (ou outra porta, como `5175`).
+
+### Passo 3: Testando a Integração
+
+* Com os **dois terminais rodando**, acesse a URL do `syncup-project-manager` no seu navegador (ex: `http://localhost:5173`).
+* Faça o login na aplicação.
+* Clique no item **"Análise"** na barra de navegação lateral.
+* A página de análise será carregada, demonstrando que o app principal conseguiu buscar e renderizar com sucesso um componente de um projeto totalmente independente que está rodando em outra porta.
