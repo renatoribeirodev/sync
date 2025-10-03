@@ -1,0 +1,9 @@
+/* Cole este código em TeamForm.css */
+.team-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Reutilizando as classes que já criamos para o ProjectForm */
+/* Se você não tiver um arquivo CSS global para formulários, pode copiar as classes .form-group, .form-actions e .btn do ProjectForm.css para cá */

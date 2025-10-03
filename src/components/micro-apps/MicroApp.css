@@ -1,0 +1,302 @@
+/* Cole este código em MicroApp.css */
+.page-container {
+    /* Animação sutil para a transição entre páginas */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+/* --- Estilos do Dashboard --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-icon.purple {
+    color: #8e44ad;
+}
+
+.stat-icon.blue {
+    color: #2980b9;
+}
+
+.stat-icon.green {
+    color: #27ae60;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+}
+
+/* --- Estilos dos Projetos --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.project-title {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.project-status {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.status-inprogress {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+}
+
+.status-completed {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+.status-paused {
+    background-color: rgba(243, 156, 18, 0.2);
+    color: #f39c12;
+}
+
+.project-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+}
+
+.project-progress {
+    margin-top: auto;
+}
+
+/* Empurra a barra de progresso para baixo */
+.progress-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: var(--background-tertiary);
+    border-radius: 5px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--accent-primary);
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+/* --- Estilos da Equipe --- */
+.team-table-container {
+    background-color: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+}
+
+.team-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.team-table th,
+.team-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.team-table th {
+    background-color: var(--background-tertiary);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.team-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.team-table tbody tr:hover {
+    background-color: var(--background-tertiary);
+}
+
+.member-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.member-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.status-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-indicator-online {
+    background-color: var(--status-green);
+}
+
+.status-indicator-offline {
+    background-color: var(--text-secondary);
+}
+
+/* Adicione estas classes ao final de MicroApp.css */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.add-project-btn {
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.add-project-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Adicione estas classes ao final de MicroApp.css */
+.actions-column {
+    text-align: right;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.icon-action-btn {
+    background: none;
+    border: none;
+    padding: 6px;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.icon-action-btn:hover {
+    background-color: var(--background-tertiary);
+    color: var(--accent-primary);
+}
+
+.icon-action-btn.danger:hover {
+    color: #e74c3c;
+}
+
+/* Adicione estas classes ao final de MicroApp.css */
+
+/* Faz o conteúdo do card preencher o espaço, empurrando o rodapé para baixo */
+.project-card-content {
+    flex-grow: 1;
+}
+
+.card-actions-footer {
+    border-top: 1px solid var(--border-color);
+    margin-top: 16px;
+    padding-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+/* Para que o card se comporte corretamente com o rodapé, 
+   precisamos adicionar flexbox a ele. Encontre a classe .ui-card
+   no seu arquivo /src/components/ui/Card.css e adicione as
+   duas propriedades abaixo. */
+
+   .status-todo {
+       background-color: rgba(149, 165, 166, 0.2);
+       color: #95a5a6;
+   }
+
+   .stat-icon.orange {
+       color: #f39c12;
+   }
+
+   /* Adicione esta classe junto com as outras cores de ícone */
+
+   .stat-icon.gray {
+       color: #95a5a6;
+   }

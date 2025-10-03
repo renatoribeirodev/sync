@@ -1,0 +1,25 @@
+/* Cole este código em GlobalStyles.css */
+/* Paleta de Cores e Variáveis Globais */
+:root {
+    --background-primary: #10101a;
+    --background-secondary: #1a1a2e;
+    --background-tertiary: #2a2a4a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0c0;
+    --accent-primary: #6c5ce7;
+    /* Índigo/Roxo */
+    --accent-hover: #8271f4;
+    --border-color: #3a3a5a;
+
+    --status-green: #2ecc71;
+    --status-blue: #3498db;
+    --status-orange: #f39c12;
+
+    --font-family: 'Inter', sans-serif;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+}

@@ -1,0 +1,116 @@
+/* Cole este código em Sidebar.css */
+.sidebar {
+    width: 250px;
+    background-color: var(--background-secondary);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    transition: width 0.3s ease;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    padding: 0 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebar-logo {
+    font-size: 2rem;
+    color: var(--accent-primary);
+    background-color: var(--background-tertiary);
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding: 15px 30px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--background-tertiary);
+    color: var(--text-primary);
+}
+
+.nav-button.active {
+    background-color: var(--background-tertiary);
+    color: var(--accent-primary);
+    border-left-color: var(--accent-primary);
+}
+
+.nav-button span {
+    transition: opacity 0.3s ease;
+}
+
+/* --- Responsividade para Tablets e Celulares --- */
+@media (max-width: 768px) {
+    .sidebar {
+        order: 2;
+        /* Joga a barra para baixo no layout flex column */
+        width: 100%;
+        height: 65px;
+        flex-direction: row;
+        padding: 0;
+        border-right: none;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .sidebar-header {
+        display: none;
+    }
+
+    .sidebar-nav {
+        width: 100%;
+    }
+
+    .sidebar-nav ul {
+        display: flex;
+        justify-content: space-around;
+        height: 100%;
+    }
+
+    .nav-button {
+        flex-direction: column;
+        justify-content: center;
+        padding: 8px;
+        border-left: none;
+        border-top: 3px solid transparent;
+        /* Muda a borda ativa para cima */
+        height: 100%;
+        gap: 4px;
+    }
+
+    .nav-button.active {
+        border-top-color: var(--accent-primary);
+        border-left-color: transparent;
+        /* Reseta a borda da esquerda */
+    }
+
+    .nav-button span {
+        font-size: 0.75rem;
+    }
+}
